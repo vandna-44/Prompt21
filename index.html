@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Launch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Introducing Our New Product!</h1>
+        <p>The most exciting product of the year is coming soon. Get ready to experience the future!</p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown" id="countdown">00d 00h 00m 00s</div>
+
+        <!-- Product Info -->
+        <div class="product-info">
+            <h2>Product Features</h2>
+            <p>Feature 1: Amazing performance</p>
+            <p>Feature 2: Sleek design</p>
+            <p>Feature 3: Affordable price</p>
+            <p>And much more...</p>
+        </div>
+
+        <!-- Purchase Button -->
+        <a href="#" class="buy-now-btn" id="buyNowBtn">Buy Now</a>
+    </div>
+
+    <footer>
+        <p>Follow us on social media for updates</p>
+    </footer>
+
+    <script>
+        // Set the launch date
+        const launchDate = new Date("October 25, 2024 12:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const timeLeft = launchDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // Activate the buy button when the countdown is over
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "Product Launched!";
+                document.getElementById("buyNowBtn").classList.add("active");
+                document.getElementById("buyNowBtn").href = "#"; // Add the purchase link
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
